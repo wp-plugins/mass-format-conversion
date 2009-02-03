@@ -78,7 +78,7 @@ function mass_format_conversion() {
 	<h2><?php _e( 'Converting All Posts:'); ?></h2><?php
 	flush();
 	global $wpdb;
-	remove_all_shortcodes();
+	if (function_exists('remove_all_shortcodes')) remove_all_shortcodes();
 	$allposts = $wpdb->get_results("SELECT ID, post_content FROM $wpdb->posts ORDER BY ID");	
 	foreach ($allposts as $thispost) {
 		// clear from previous iteration
