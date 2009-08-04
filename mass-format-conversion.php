@@ -8,8 +8,10 @@ Author: Stephanie Leary
 Author URI: http://sillybean.net/
 
 Changelog:
-1.0 (February 1, 2009)
-	First release
+= 1.1 =
+* Added user capability check (August 3, 2009)  
+= 1.0 =  
+* First release (February 1, 2009)
 
 Copyright 2008  Stephanie Leary  (email : steph@sillybean.net)
 
@@ -74,6 +76,7 @@ function mass_format_options() {
 <?php } // end function mass_format_options() 
 
 function mass_format_conversion() {
+	if ( current_user_can('import') ) {  
 	?><div class="wrap">
 	<h2><?php _e( 'Converting All Posts:'); ?></h2><?php
 	flush();
@@ -108,5 +111,6 @@ function mass_format_conversion() {
 		flush();
 	}
 	?> </div> <?php
+	}
 } 
 ?>
