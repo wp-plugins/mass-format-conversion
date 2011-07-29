@@ -55,25 +55,25 @@ function mass_format_options() {
 			mass_format_conversion();
 			// Put an options updated message on the screen ?>
 			<div class="updated"><p><strong><?php _e('<p>Conversion complete. See below for any reported problems that might need your attention.</p>
-													 <p>You may now remove this plugin as well as the text formatting plugin(s) you were using. If you deactivated any plugins that use shortcodes, you should now reactivate them.</p>'); ?></strong></p></div>
+													 <p>You may now remove this plugin as well as the text formatting plugin(s) you were using. If you deactivated any plugins that use shortcodes, you should now reactivate them.</p>', 'mass-format-conversion'); ?></strong></p></div>
 		<?php } // Now display the options editing screen ?>
 	
     <div class="wrap">
     <?php if( $_POST[ $hidden_field_name ] != 'Y' ) { ?>
 	<form method="post" id="mass_format_form">
-    <h2><?php _e( 'Mass Format Conversion'); ?></h2>
+    <h2><?php _e( 'Mass Format Conversion', 'mass-format-conversion'); ?></h2>
 	<input type="hidden" name="<?php echo $hidden_field_name; ?>" value="Y">
-<p><?php _e("This tool applies all content filters to posts and comments and saves them back to the database. This is useful if you have been using Textile or Markdown (for example) and you want to switch to plain HTML."); ?></p>
-<p><?php _e("If you are using a plugin that uses short tags -- e.g. [thing] -- <em>and you want to keep using it</em>, you should deactivate it before running this conversion. Otherwise, that too will be converted to its full HTML equivalent."); ?></p>
-<p><?php _e("Press the button below to convert the format of all your posts."); ?></p>
+<p><?php _e("This tool applies all content filters to posts and comments and saves them back to the database. This is useful if you have been using Textile or Markdown (for example) and you want to switch to plain HTML.", 'mass-format-conversion'); ?></p>
+<p><?php _e("If you are using a plugin that uses short tags -- e.g. [thing] -- <em>and you want to keep using it</em>, you should deactivate it before running this conversion. Otherwise, that too will be converted to its full HTML equivalent.", 'mass-format-conversion'); ?></p>
+<p><?php _e("Press the button below to convert the format of all your posts.", 'mass-format-conversion'); ?></p>
 
 	<p class="submit">
-	<input type="submit" name="submit" value="<?php _e('Mass Format Posts and Comments'); ?>" class="button-primary" />
+	<input type="submit" name="submit" value="<?php _e('Mass Format Posts and Comments', 'mass-format-conversion'); ?>" class="button-primary" />
 	</p>
 	</form>
     <?php } // if ?>
     
-	<p><?php printf(__("%d queries. "), get_num_queries()); ?><?php printf__(" seconds."), timer_stop(1)); ?></p>
+	<p><?php printf(__("%d queries. ", 'mass-format-conversion'), get_num_queries()); ?><?php printf__(" seconds."), timer_stop(1)); ?></p>
     </div>
     
 <?php } // end function mass_format_options() 
@@ -81,7 +81,7 @@ function mass_format_options() {
 function mass_format_conversion() {
 	if ( current_user_can('import') ) {  
 	?><div class="wrap">
-	<h2><?php _e( 'Converting All Posts:'); ?></h2><?php
+	<h2><?php _e( 'Converting All Posts:', 'mass-format-conversion'); ?></h2><?php
 	flush();
 	global $wpdb;
 	if (function_exists('remove_all_shortcodes')) remove_all_shortcodes();
@@ -93,12 +93,12 @@ function mass_format_conversion() {
 		$my_post['post_content'] = apply_filters('the_content', $thispost->post_content);
 		if (!empty($my_post['post_content'])) {
 			wp_update_post( $my_post );
-			printf(__( " Converted post #%d.<br />"), $my_post['ID']);
+			printf(__( " Converted post #%d.<br />", 'mass-format-conversion'), $my_post['ID']);
 		}
-		else printf(__( " Problem with post #%d. You should check it manually.<br />"), $my_post['ID']); 
+		else printf(__( " Problem with post #%d. You should check it manually.<br />", 'mass-format-conversion'), $my_post['ID']); 
 		flush();
 	}
-	echo '<h2>'.__( 'Converting All Comments:').'</h2>'; 
+	echo '<h2>'.__( 'Converting All Comments:', 'mass-format-conversion').'</h2>'; 
 	flush();
 	$allcomments = $wpdb->get_results("SELECT comment_ID, comment_content FROM $wpdb->comments ORDER BY comment_ID");	
 	foreach ($allcomments as $thiscomment) {
@@ -108,12 +108,16 @@ function mass_format_conversion() {
 		$my_post['comment_content'] = apply_filters('the_content', $thiscomment->comment_content);
 		if (!empty($my_post['comment_content'])) {
 			wp_update_comment( $my_post );
-			printf(__( " Converted comment #%d.<br />"), $my_post['comment_ID']);
+			printf(__( " Converted comment #%d.<br />", 'mass-format-conversion'), $my_post['comment_ID']);
 		}
-		else printf(__( " Problem with comment #%d. You should check it manually.<br />"), $my_post['comment_ID']);
+		else printf(__( " Problem with comment #%d. You should check it manually.<br />", 'mass-format-conversion'), $my_post['comment_ID']);
 		flush();
 	}
 	?> </div> <?php
 	}
 } 
+
+// i18n
+$plugin_dir = basename(dirname(__FILE__)). '/languages';
+load_plugin_textdomain( 'mass-format-conversion', WP_PLUGIN_DIR.'/'.$plugin_dir, $plugin_dir );
 ?>

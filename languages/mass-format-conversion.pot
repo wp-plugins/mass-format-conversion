@@ -1,0 +1,98 @@
+# Copyright (C) 2010 Mass Format Conversion
+# This file is distributed under the same license as the Mass Format Conversion package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Mass Format Conversion 1.2\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/mass-format-conversion\n"
+"POT-Creation-Date: 2011-07-29 20:54:18+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2010-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: mass-format-conversion.php:57
+msgid ""
+"<p>Conversion complete. See below for any reported problems that might need "
+"your attention.</p>\r\n"
+"\t\t\t\t\t\t\t\t\t\t\t\t\t <p>You may now remove this plugin as well as the "
+"text formatting plugin(s) you were using. If you deactivated any plugins "
+"that use shortcodes, you should now reactivate them.</p>"
+msgstr ""
+
+#. #-#-#-#-#  plugin.pot (Mass Format Conversion 1.2)  #-#-#-#-#
+#. Plugin Name of the plugin/theme
+#: mass-format-conversion.php:64
+msgid "Mass Format Conversion"
+msgstr ""
+
+#: mass-format-conversion.php:66
+msgid ""
+"This tool applies all content filters to posts and comments and saves them "
+"back to the database. This is useful if you have been using Textile or "
+"Markdown (for example) and you want to switch to plain HTML."
+msgstr ""
+
+#: mass-format-conversion.php:67
+msgid ""
+"If you are using a plugin that uses short tags -- e.g. [thing] -- <em>and "
+"you want to keep using it</em>, you should deactivate it before running this "
+"conversion. Otherwise, that too will be converted to its full HTML "
+"equivalent."
+msgstr ""
+
+#: mass-format-conversion.php:68
+msgid "Press the button below to convert the format of all your posts."
+msgstr ""
+
+#: mass-format-conversion.php:71
+msgid "Mass Format Posts and Comments"
+msgstr ""
+
+#: mass-format-conversion.php:76
+msgid "%d queries. "
+msgstr ""
+
+#: mass-format-conversion.php:84
+msgid "Converting All Posts:"
+msgstr ""
+
+#: mass-format-conversion.php:96
+msgid " Converted post #%d.<br />"
+msgstr ""
+
+#: mass-format-conversion.php:98
+msgid " Problem with post #%d. You should check it manually.<br />"
+msgstr ""
+
+#: mass-format-conversion.php:101
+msgid "Converting All Comments:"
+msgstr ""
+
+#: mass-format-conversion.php:111
+msgid " Converted comment #%d.<br />"
+msgstr ""
+
+#: mass-format-conversion.php:113
+msgid " Problem with comment #%d. You should check it manually.<br />"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "http://sillybean.net/code/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"Applies all content filters to posts and comments and saves them back to the "
+"database. This is useful if you have been using Textile or Markdown (for "
+"example) and you want to switch to plain HTML."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Stephanie Leary"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://sillybean.net/"
+msgstr ""
