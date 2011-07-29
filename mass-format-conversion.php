@@ -3,11 +3,14 @@
 Plugin Name: Mass Format Conversion
 Plugin URI: http://sillybean.net/code/
 Description: Applies all content filters to posts and comments and saves them back to the database. This is useful if you have been using Textile or Markdown (for example) and you want to switch to plain HTML.
-Version: 1.0
+Version: 1.2
 Author: Stephanie Leary
 Author URI: http://sillybean.net/
 
 Changelog:
+= 1.2 = 
+* get rid of deprecated notices
+* localized strings
 = 1.1 =
 * Added user capability check (August 3, 2009)  
 = 1.0 =  
@@ -37,7 +40,7 @@ add_action('admin_menu', 'mass_format_add_pages');
 // action function for above hook
 function mass_format_add_pages() {
     // Add a new submenu under Options:
-	add_submenu_page('edit.php', 'Mass Format Conversion', 'Mass Format Conversion', 8, __FILE__, 'mass_format_options');
+	add_submenu_page('edit.php', 'Mass Format Conversion', 'Mass Format Conversion', 'manage_options', __FILE__, 'mass_format_options');
 }
 
 // displays the options page content
@@ -60,17 +63,17 @@ function mass_format_options() {
 	<form method="post" id="mass_format_form">
     <h2><?php _e( 'Mass Format Conversion'); ?></h2>
 	<input type="hidden" name="<?php echo $hidden_field_name; ?>" value="Y">
-<p>This tool applies all content filters to posts and comments and saves them back to the database. This is useful if you have been using Textile or Markdown (for example) and you want to switch to plain HTML.</p>
-<p>If you are using a plugin that uses short tags -- e.g. [thing] -- <em>and you want to keep using it</em>, you should deactivate it before running this conversion. Otherwise, that too will be converted to its full HTML equivalent.</p>
-<p>Press the button below to conver the format of all your posts.</p>
+<p><?php _e("This tool applies all content filters to posts and comments and saves them back to the database. This is useful if you have been using Textile or Markdown (for example) and you want to switch to plain HTML."); ?></p>
+<p><?php _e("If you are using a plugin that uses short tags -- e.g. [thing] -- <em>and you want to keep using it</em>, you should deactivate it before running this conversion. Otherwise, that too will be converted to its full HTML equivalent."); ?></p>
+<p><?php _e("Press the button below to convert the format of all your posts."); ?></p>
 
 	<p class="submit">
-	<input type="submit" name="submit" value="<?php _e('Mass Format Posts and Comments &raquo;'); ?>" />
+	<input type="submit" name="submit" value="<?php _e('Mass Format Posts and Comments'); ?>" class="button-primary" />
 	</p>
 	</form>
     <?php } // if ?>
     
-	<p><?php echo get_num_queries(); ?> queries. <?php timer_stop(1); ?> seconds.</p>
+	<p><?php printf(__("%d queries. "), get_num_queries()); ?><?php printf__(" seconds."), timer_stop(1)); ?></p>
     </div>
     
 <?php } // end function mass_format_options() 
@@ -90,12 +93,12 @@ function mass_format_conversion() {
 		$my_post['post_content'] = apply_filters('the_content', $thispost->post_content);
 		if (!empty($my_post['post_content'])) {
 			wp_update_post( $my_post );
-			_e( " Converted post #".$my_post['ID'].".<br />");
+			printf(__( " Converted post #%d.<br />"), $my_post['ID']);
 		}
-		else _e( " Problem with post #".$my_post['ID'].". You should check it manually.<br />"); 
+		else printf(__( " Problem with post #%d. You should check it manually.<br />"), $my_post['ID']); 
 		flush();
 	}
-	_e( '<h2>Converting All Comments:</h2>'); 
+	echo '<h2>'.__( 'Converting All Comments:').'</h2>'; 
 	flush();
 	$allcomments = $wpdb->get_results("SELECT comment_ID, comment_content FROM $wpdb->comments ORDER BY comment_ID");	
 	foreach ($allcomments as $thiscomment) {
@@ -105,9 +108,9 @@ function mass_format_conversion() {
 		$my_post['comment_content'] = apply_filters('the_content', $thiscomment->comment_content);
 		if (!empty($my_post['comment_content'])) {
 			wp_update_comment( $my_post );
-			_e( " Converted comment #".$my_post['comment_ID'].".<br />");
+			printf(__( " Converted comment #%d.<br />"), $my_post['comment_ID']);
 		}
-		else _e( " Problem with comment #".$my_post['comment_ID'].". You should check it manually.<br />");
+		else printf(__( " Problem with comment #%d. You should check it manually.<br />"), $my_post['comment_ID']);
 		flush();
 	}
 	?> </div> <?php
