@@ -3,11 +3,13 @@
 Plugin Name: Mass Format Conversion
 Plugin URI: http://sillybean.net/code/
 Description: Applies all content filters to posts and comments and saves them back to the database. This is useful if you have been using Textile or Markdown (for example) and you want to switch to plain HTML.
-Version: 1.2
+Version: 1.2.1
 Author: Stephanie Leary
 Author URI: http://sillybean.net/
 
 Changelog:
+= 1.2.1 =
+* Typo fix.
 = 1.2 = 
 * get rid of deprecated notices
 * localized strings
@@ -73,7 +75,7 @@ function mass_format_options() {
 	</form>
     <?php } // if ?>
     
-	<p><?php printf(__("%d queries. ", 'mass-format-conversion'), get_num_queries()); ?><?php printf__(" seconds."), timer_stop(1)); ?></p>
+	<p><?php printf(__("%d queries. "), get_num_queries()); ?><?php printf(__(" seconds."), timer_stop(1)); ?></p>
     </div>
     
 <?php } // end function mass_format_options() 
