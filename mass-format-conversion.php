@@ -122,4 +122,3 @@ function mass_format_conversion() {
 // i18n
 $plugin_dir = basename(dirname(__FILE__)). '/languages';
 load_plugin_textdomain( 'mass-format-conversion', WP_PLUGIN_DIR.'/'.$plugin_dir, $plugin_dir );
-?>
