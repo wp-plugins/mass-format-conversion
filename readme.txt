@@ -3,7 +3,7 @@ Contributors: sillybean
 Donate Link: http://sillybean.net/code/wordpress/mass-format-conversion-for-wordpress/
 Tags: categories
 Requires at least: 2.3
-Tested up to: 4.1
+Tested up to: 4.2
 Stable tag: 1.2.1
 
 
